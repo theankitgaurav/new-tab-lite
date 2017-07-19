@@ -68,8 +68,10 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = openLink;
-/* harmony export (immutable) */ __webpack_exports__["b"] = render;
+/* harmony export (immutable) */ __webpack_exports__["b"] = openLink;
+/* harmony export (immutable) */ __webpack_exports__["c"] = render;
+/* harmony export (immutable) */ __webpack_exports__["a"] = get;
+/* harmony export (immutable) */ __webpack_exports__["d"] = set;
 /* 
 Helper method to open chrome-specific and regular urls bypassing content
 security policy
@@ -96,6 +98,14 @@ function render(parentDivId, dataObjectsArr) {
     for (let el of dataObjectsArr) {
         parentDiv.innerHTML += el.toString()
     }
+}
+
+function get(key) {
+	return JSON.parse(localStorage.getItem(key))
+}
+
+function set(key, value) {
+	localStorage.setItem(key, JSON.stringify(value)) 
 }
 
 /***/ }),
@@ -165,23 +175,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-const totolSpeedDials = 10
-const totalRecentBookmarks = 8
-
 // Disable the default context manus
 document.addEventListener("contextmenu", (event) => {
-    event.preventDefault();
+    event.preventDefault()
 }, false)
 
 // Add click event listeners to footer launchButtons
 for (let el of document.getElementsByClassName("launchButton")) {
     el.addEventListener("click", (event) => {
-        Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["a" /* openLink */])(event.target.getAttribute("data-url"))
+        Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["b" /* openLink */])(event.target.getAttribute("data-url"))
     })
 }
 
-Object(__WEBPACK_IMPORTED_MODULE_2__speed_dials__["a" /* fetchTopSites */])(totolSpeedDials)
-Object(__WEBPACK_IMPORTED_MODULE_1__recent_bookmarks__["a" /* fetchRecentBookmarks */])(totalRecentBookmarks)
+Object(__WEBPACK_IMPORTED_MODULE_2__speed_dials__["a" /* fetchTopSites */])()
+Object(__WEBPACK_IMPORTED_MODULE_1__recent_bookmarks__["a" /* fetchRecentBookmarks */])()
 
 /***/ }),
 /* 3 */
@@ -193,14 +200,15 @@ Object(__WEBPACK_IMPORTED_MODULE_1__recent_bookmarks__["a" /* fetchRecentBookmar
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes__ = __webpack_require__(1);
 
 
+const rbCount = 8
 
-function fetchRecentBookmarks(rbCount) {
+function fetchRecentBookmarks() {
     let recentBookmarksArr = []
     chrome.bookmarks.getRecent(rbCount, (recents) => {
         recentBookmarksArr = recents.map((el) => {
             return new __WEBPACK_IMPORTED_MODULE_1__classes__["a" /* RB */](el)
         })
-        Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["b" /* render */])("recent-bookmarks-box", recentBookmarksArr)
+        Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["c" /* render */])("recent-bookmarks-box", recentBookmarksArr)
         addListenerForRB()
     })
 }
@@ -213,7 +221,7 @@ function fetchRecentBookmarks(rbCount) {
 function addListenerForRB() {
     for (let el of document.getElementsByClassName('recent-bookmarks')) {
         el.addEventListener("click", (event) => {
-            Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["a" /* openLink */])(event.target.id)
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["b" /* openLink */])(event.target.id)
         })
     }
 }
@@ -231,80 +239,65 @@ function addListenerForRB() {
 
 let sdUrls = []
 let sdDomObjects = []
-const key = 'removed-speed-dials'
+const key = 'removedSDURLs'
+let removedURLs = []
+let sdCount = 10
 
-/*
-Todo:
-*/
-function fetchTopSites(sdCount) {
+function fetchTopSites() {
+    removedURLs = Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["a" /* get */])(key)
     chrome.topSites.get((sites) => {
-        chrome.storage.sync.get(key, function(removedItems) {
-            console.log(removedItems)
-            if (chrome.runtime.lastError) {
-                console.error("Runtime Error while fetching data from Chrome Storage")
-                sdUrls = sites
-            } else if (removedItems.key == null) {
-                //console.log('No urls removed from Speed Dial')
-                sdUrls = sites
-            } else {
-                sdUrls = sites.filter((el) => {
-                    return removedItems.indexOf(el.url) === -1
-                })
-            }
-            sdDomObjects = sdUrls.map((el) => {
-                return new __WEBPACK_IMPORTED_MODULE_1__classes__["b" /* SD */](el)
-            }).splice(0, sdCount)
-            Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["b" /* render */])("speed-dial-box", sdDomObjects)
-            addListenersForSD()
-        })
+        if (removedURLs == null) {
+            sdUrls = sites
+        } else {
+            sdUrls = sites.filter((el) => {
+                return removedURLs.indexOf(el.url) === -1
+            })
+        }
+        sdDomObjects = sdUrls.map((el) => {
+            return new __WEBPACK_IMPORTED_MODULE_1__classes__["b" /* SD */](el)
+        }).slice(0,sdCount)
+        Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["c" /* render */])("speed-dial-box", sdDomObjects)
+        addListenersForSD()
+        addListenersForRemoveButtons()
     })
 }
 
 
-/*
-// This method needs to be called after rendering the DOM
-// to add the event listeners required for speed-dials section
-*/
 function addListenersForSD() {
     // Add event listener to open links from the speed dials
     for (let el of document.getElementsByClassName('speed-dial')) {
         el.addEventListener("click", (event) => {
-            Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["a" /* openLink */])(event.target.id)
-        })
-    }
-    // Add event listener to remove particular items from speed dial box and storage 
-    for (let el of document.getElementsByClassName("remove")) {
-        el.addEventListener("click", (event) => {
-            event.cancelBubble = true // Prevents the event from being bubbled into parent divs
-            const speedDial = event.target.parentNode.parentNode
-            const parentDiv = speedDial.parentNode
-            let urlToBeRemoved = speedDial.firstChild.id
-            chrome.storage.sync.get(key, (res) => {
-                if (chrome.runtime.lastError) {
-                    console.error("Runtime Error while fetching data from Chrome Storage")
-                } else if (res.key == null) {// No urls saved to be removed from Speed Dial
-                    res.key = [urlToBeRemoved]
-                    chrome.storage.sync.set({ key: res }, () => {
-                        console.log('New url saved to be removed from speed dial')
-                    })
-                } else {
-                    console.log('savedRemovedUrls: ', res)
-                    if (res.key.indexOf(urlToBeRemoved) === -1) { //url doesn't exist in storage
-                        res.key.push(urlToBeRemoved)
-                        chrome.storage.sync.set({ key: res }, () => {
-                            console.log('New url saved to be removed from speed dial')
-                        })
-                    } else {
-                        console.log('Url already exists in removedUrls chrome storage')
-                    }
-                }
-                fetchTopSites()
-            })
-
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["b" /* openLink */])(event.target.id)
         })
     }
 }
 
+function addListenersForRemoveButtons() {
+    // Add event listener to remove particular items from speed dial box and storage 
+    for (let el of document.getElementsByClassName("remove")) {
+        el.addEventListener("click", (event) => {
+            console.log(event)
+            // Prevents the event from being bubbled into parent divs
+            event.cancelBubble = true
+
+            const clickedSDDiv = event.target.parentNode.parentNode
+            const urlToBeRemoved = clickedSDDiv.firstElementChild.id
+
+            if (removedURLs == null) { // No urls saved to be removed from Speed Dial
+                removedURLs = [urlToBeRemoved]
+                Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["d" /* set */])(key, removedURLs)
+            } else { // Some urls already being ignored from speed dial
+                if (removedURLs.indexOf(urlToBeRemoved) === -1) { //url doesn't exist in storage
+                    removedURLs.push(urlToBeRemoved)
+                    Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["d" /* set */])(key, removedURLs)
+                } else {
+                    console.log('Url already exists in removedURLs chrome storage')
+                }
+            }
+            fetchTopSites()
+        })
+    }
+}
 
 /***/ })
 /******/ ]);

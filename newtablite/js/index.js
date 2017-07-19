@@ -2,9 +2,6 @@ import { openLink } from './helpers'
 import { fetchRecentBookmarks } from './recent-bookmarks'
 import { fetchTopSites } from './speed-dials'
 
-const totolSpeedDials = 10
-const totalRecentBookmarks = 8
-
 // Disable the default context manus
 document.addEventListener("contextmenu", (event) => {
     event.preventDefault()
@@ -17,5 +14,5 @@ for (let el of document.getElementsByClassName("launchButton")) {
     })
 }
 
-fetchTopSites(totolSpeedDials)
-fetchRecentBookmarks(totalRecentBookmarks)
+fetchTopSites()
+fetchRecentBookmarks()

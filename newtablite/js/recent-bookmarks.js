@@ -1,7 +1,8 @@
 import { openLink, render } from './helpers'
 import { RB } from './classes'
+const rbCount = 8
 
-export function fetchRecentBookmarks(rbCount) {
+export function fetchRecentBookmarks() {
     let recentBookmarksArr = []
     chrome.bookmarks.getRecent(rbCount, (recents) => {
         recentBookmarksArr = recents.map((el) => {
