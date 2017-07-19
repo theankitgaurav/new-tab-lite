@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+}
+
+body {
+    background-color: #F8F8F8;
+    font-family: sans-serif;
+    font-size: .9em;
+}
+
+#header {
+    border-bottom: 1px solid hsla(0, 0%, 0%, .03);
+    box-shadow: 0 1px 2px hsla(0, 0%, 0%, .02) inset, 0 -1px 0 hsla(0, 0%, 100%, .25);
+    background-color: #eee;
+}
+
+#recent-bookmarks-box {
+    display: inline-block;
+}
+
+.recent-bookmarks {
+    display: inline-block;
+    padding: 10px 5px;
+    cursor: pointer;
+}
+
+.recent-bookmarks:hover {
+    background-color: #CCC;
+}
+
+.favicon {
+    margin-right: 5px;
+    vertical-align: bottom;
+}
+
+#ntl-settings {
+    float: right;
+    display: inline-block;
+    padding: 10px;
+    border-left: 1px solid hsla(0, 0%, 0%, .03);
+    box-shadow: 0 1px 2px hsla(0, 0%, 0%, .02) inset, 0 -1px 0 hsla(0, 0%, 100%, .25);
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #ececec;
+    border-top: 1px solid hsla(0, 0%, 0%, .03);
+    box-shadow: 0 1px 2px hsla(0, 0%, 0%, .02) inset, 0 -1px 0 hsla(0, 0%, 100%, .25);
+    text-align: center;
+}
+
+.launchButton {
+    margin: 16px 1px;
+    padding: 14px 6px;
+    min-width: 88px;
+    max-width: 176px;
+    max-height: 85px;
+    vertical-align: top;
+    background: transparent padding-box;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    color: #525c66;
+    cursor: pointer;
+    transition-property: background-color, border-color, box-shadow;
+    transition-duration: 150ms;
+}
+
+.launchButton:hover {
+    background-color: #DDD;
+}
+
+.launchButton::before {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 0 auto 6px;
+    line-height: 0;
+    /* remove extra vertical space due to non-zero font-size */
+}
+
+#downloads::before {
+    content: url("../icons/downloads.png");
+}
+
+#bookmarks::before {
+    content: url("../icons/bookmarks.png");
+}
+
+#extensions::before {
+    content: url("../icons/addons.png");
+}
+
+#settings::before {
+    content: url("../icons/settings.png");
+}
+
+#apps::before {
+    content: url("../icons/downloads.png");
+}
+
+#history::before {
+    content: url("../icons/history.png");
+}
+
+#center {
+    height: 90vh;
+    position: relative;
+}
+
+#align-center-div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+}
+
+#search-box {
+    height: 50px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+input {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.05em;
+    background-color: #FCFCFC;
+    border: 1px solid;
+    border-radius: 2px;
+    border-color: hsla(210, 54%, 20%, .3) hsla(210, 54%, 20%, .3) hsla(210, 54%, 20%, .3);
+    box-shadow: 0 1px 0 hsla(210, 65%, 9%, .02) inset, 0 0 2px hsla(210, 65%, 9%, .1) inset, 0 1px 0 hsla(0, 0%, 100%, .2);
+}
+
+input:focus {
+    background-color: white;
+}
+
+#speed-dial-box {
+    height: 200px;
+    width: 500px;
+}
+
+.speed-dial {
+    display: inline-block;
+    width: 20%;
+    text-align: left;
+    text-overflow: ellipsis;
+    color: #444;
+    padding: 5px;
+    border: 1px solid #DDD;
+    margin: 0px 5px 10px 0px;
+}
+
+
+.speed-dial::after {
+    content: url("../icons/bookmarks.png");
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 5px 0px 10px 0px;
+}
+
+/*.speed-dial .favicon {
+    background: url(img_flower.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}*/
+
+.speed-dial:hover {
+    box-shadow: 0 5px 5px hsla(10%, 10%, 10%, .5);
+    cursor: pointer;
+    border: 1px solid #BBB;
+    background-color: #DDD;
+}
+
+.speed-dial .remove {
+    margin: 0px;
+    float: right;
+    visibility: hidden;
+    text-align: center;
+    padding: 5px;
+    content: url("../icons/close.png");
+}
+
+.speed-dial:hover .remove {
+    visibility: visible;
+    cursor: default;
+}
