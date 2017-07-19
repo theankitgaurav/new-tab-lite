@@ -128,10 +128,10 @@ class SD {
     toString() {
         return `
         <div class="speed-dial">
-            <div class="speed-dial-item" id="${this.url}">
+            <div class="speed-dial-item" data-id="${this.url}">
                 <span class="remove">x</span>
-                <img class="speed-dial-favicon" src="${this.faviconUrl}" width=20px height=20px>
-                <div class="speed-dial-title" title="${this.title}">${this.title}</div>
+                <img data-id="${this.url}" class="speed-dial-favicon" src="${this.faviconUrl}" width=20px height=20px>
+                <div data-id="${this.url}" class="speed-dial-title" title="${this.title}">${this.title}</div>
             </div>
         </div>`
     }
@@ -267,7 +267,7 @@ function addListenersForSD() {
     // Add event listener to open links from the speed dials
     for (let el of document.getElementsByClassName('speed-dial')) {
         el.addEventListener("click", (event) => {
-            Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["b" /* openLink */])(event.target.id)
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["b" /* openLink */])(event.target.dataset.id)
         })
     }
 }
@@ -281,7 +281,7 @@ function addListenersForRemoveButtons() {
             event.cancelBubble = true
 
             const clickedSDDiv = event.target.parentNode.parentNode
-            const urlToBeRemoved = clickedSDDiv.firstElementChild.id
+            const urlToBeRemoved = clickedSDDiv.firstElementChild.dataset.id
 
             if (removedURLs == null) { // No urls saved to be removed from Speed Dial
                 removedURLs = [urlToBeRemoved]

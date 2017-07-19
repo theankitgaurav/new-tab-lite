@@ -31,7 +31,7 @@ function addListenersForSD() {
     // Add event listener to open links from the speed dials
     for (let el of document.getElementsByClassName('speed-dial')) {
         el.addEventListener("click", (event) => {
-            openLink(event.target.id)
+            openLink(event.target.dataset.id)
         })
     }
 }
@@ -45,7 +45,7 @@ function addListenersForRemoveButtons() {
             event.cancelBubble = true
 
             const clickedSDDiv = event.target.parentNode.parentNode
-            const urlToBeRemoved = clickedSDDiv.firstElementChild.id
+            const urlToBeRemoved = clickedSDDiv.firstElementChild.dataset.id
 
             if (removedURLs == null) { // No urls saved to be removed from Speed Dial
                 removedURLs = [urlToBeRemoved]
