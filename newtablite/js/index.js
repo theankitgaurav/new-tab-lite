@@ -1,7 +1,7 @@
 let topSitesArr = [] // Contains all the topsite objects synced from chrome.topsites api
 let recentBookmarksArr = [] // Contains all the recently bookmarked objects synced from chrome.bookmarks.getRecent api
 let speedDialsArr = [] // Contains all the data objects for 
-const sdCount = 8
+const sdCount = 10
 const rbCount = 8
 const key = 'removed-speed-dials'
 /* 
@@ -13,12 +13,17 @@ class SD {
         this.url = SDObject.url || '#'
         this.title = SDObject.title || ''
         this.shortTitle = (SDObject.title.length <= 6) ? SDObject.title : SDObject.title.substring(0, 10) + '..'
+        this.faviconUrl = `chrome://favicon/${SDObject.url}`
     }
     toString() {
-        return `<div class="speed-dial"><span title="${this.title}" id="${this.url}">${this.shortTitle}</span><span class="remove">x</span></div>`
-    }
-    faviconUrl() {
-        return `chrome://favicons/${this.url}`
+        return `
+        <div class="speed-dial">
+            <div class="speed-dial-item">
+                <span class="remove">x</span>
+                <img class="speed-dial-favicon" src="${this.faviconUrl}" width=20px height=20px>
+                <div class="speed-dial-title" title="${this.title}" id="${this.url}">${this.title}</div>
+            </div>
+        </div>`
     }
 }
 /* 
@@ -34,7 +39,12 @@ class RB {
         this.favicon = `chrome://favicon/${RBObject.url}`
     }
     toString() {
-        return `<div class="recent-bookmarks" title="${this.title}"  id="${this.url}"><img class="favicon" src="${this.favicon}">${this.shortTitle}</div>`
+        return `
+        <div class="recent-bookmarks" title="${this.title}
+${this.url}"  id="${this.url}">
+        <img class="favicon" src="${this.favicon}">
+        ${this.shortTitle}
+        </div>`
     }
 }
 
