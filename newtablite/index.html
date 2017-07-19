@@ -23,13 +23,15 @@ https://google.com"  id="https://google.com">Google</div>
                 Settings
             </div>
         </div>
-        <div id="center">
-            <div id="align-center-div">
+        <div id="center" style="display:flex;justify-content:center;align-items:center;width:100%;height:100%;">
+            <div id="align-center-div" style="width:500px;">
                 <div id="search-box">
-                    <input name="search" type="search" id="search" placeholder="Search Google or type url" autofocus>
+                    <form method="GET" action="https://www.google.com/search">
+                        <input name="q" type="search" id="search" placeholder="Search Google or type url" autofocus>
+                    </form>
                 </div>
                 <div id="speed-dial-box">
-<!--                     <div class="speed-dial">
+                    <!--                     <div class="speed-dial">
                         <span title="Facebook" id="https://Facebook.com">Facebook</span>
                         <span class="remove">x</span>
                     </div> -->

@@ -4,10 +4,6 @@ let speedDialsArr = [] // Contains all the data objects for
 const sdCount = 8
 const rbCount = 8
 const key = 'removed-speed-dials'
-window.blur();   
-setTimeout(function(){
-  document.getElementById("search").focus();
-}, 1000)
 /* 
 This class creates the required DOM elements to be embedded in the 
 speed-dial-box
@@ -133,6 +129,10 @@ chrome.bookmarks.getRecent(rbCount, (recents) => {
     addListenerForRB()
 })
 
+/*
+// This method needs to be called after rendering the DOM
+// to add the event listeners required for recent-bookmarks section
+*/
 function addListenerForRB() {
     // Add event listener to open links in header
     for (let el of document.getElementsByClassName('recent-bookmarks')) {
@@ -169,7 +169,7 @@ chrome.topSites.get((sites) => {
 
 /*
 // This method needs to be called after rendering the DOM
-// to add the event listeners required
+// to add the event listeners required for speed-dials section
 */
 function addListenersForSD() {
     // Add event listener to open links from the speed dials
