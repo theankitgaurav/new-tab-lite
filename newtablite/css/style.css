@@ -104,18 +104,18 @@ body {
     content: url("../icons/history.png");
 }
 
-/*#center {
+#center {
     height: 90vh;
     position: relative;
-}*/
+}
 
-/*#align-center-div {
+#align-center-div {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
-}*/
+}
 
 #search-box {
     height: 50px;
