@@ -18,10 +18,10 @@ class SD {
     toString() {
         return `
         <div class="speed-dial">
-            <div class="speed-dial-item">
+            <div class="speed-dial-item" id="${this.url}">
                 <span class="remove">x</span>
                 <img class="speed-dial-favicon" src="${this.faviconUrl}" width=20px height=20px>
-                <div class="speed-dial-title" title="${this.title}" id="${this.url}">${this.title}</div>
+                <div class="speed-dial-title" title="${this.title}">${this.title}</div>
             </div>
         </div>`
     }
@@ -77,10 +77,12 @@ function render(parentDivId, dataObjectsArr) {
 }
 
 
-/* Todo: 
+/* 
 This method removes a particular url from the speed dial and also saves it into
 chrome storage.
 The removed urls can be brought back by resetting prefereces from settings.
+@param: url: String: the url that needs to be added to the removedSet in chrome 
+storage
 */
 function removeSD(url) {
     chrome.storage.sync.get(key, function(result) {
@@ -185,14 +187,15 @@ function addListenersForSD() {
     // Add event listener to open links from the speed dials
     for (let el of document.getElementsByClassName('speed-dial')) {
         el.addEventListener("click", (event) => {
-            openLink(event.target.firstChild.id)
+            openLink(event.target.id)
         })
     }
     // Add event listener to remove particular items from speed dial box and storage 
     for (let el of document.getElementsByClassName("remove")) {
         el.addEventListener("click", (event) => {
+            console.log(event)
             event.cancelBubble = true // Prevents the event from being bubbled into parent divs
-            const speedDial = event.target.parentNode
+            const speedDial = event.target.parentNode.parentNode
             const parentDiv = speedDial.parentNode
             parentDiv.removeChild(speedDial)
             removeSD(speedDial.firstChild.id) // Updates the removal into storage
