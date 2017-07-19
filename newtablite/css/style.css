@@ -17,6 +17,7 @@ body {
 
 #recent-bookmarks-box {
     display: inline-block;
+    width: 90%;
 }
 
 .recent-bookmarks {
@@ -35,9 +36,10 @@ body {
 }
 
 #ntl-settings {
-    float: right;
-    display: inline-block;
-    padding: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: auto;
     border-left: 1px solid hsla(0, 0%, 0%, .03);
     box-shadow: 0 1px 2px hsla(0, 0%, 0%, .02) inset, 0 -1px 0 hsla(0, 0%, 100%, .25);
 }
@@ -115,7 +117,7 @@ body {
     position: absolute;
     width: 500px;
     height: 250px;
-    top: calc(100vh - 80vh);
+    top: calc(100vh - 70vh);
     left: calc((100vw - 500px) / 2);
 }
 
