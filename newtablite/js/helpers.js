@@ -4,7 +4,7 @@ security policy
 @param url: string: the url to be opened
 @param self: boolean: whether or not to open in the same tab
 */
-function openLink() {
+export function openLink() {
     chrome.tabs.update({
         'url': arguments[0],
         'selected': (arguments[1]) ? arguments[1] : true
@@ -18,7 +18,7 @@ appended
 @param dataObjectsArr: Array: list of all the data objects with toString method 
 for generating the dom html string
 */
-function render(parentDivId, dataObjectsArr) {
+export function render(parentDivId, dataObjectsArr) {
     const parentDiv = document.getElementById(parentDivId)
     parentDiv.innerHTML = ""
     for (let el of dataObjectsArr) {

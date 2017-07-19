@@ -1,16 +1,14 @@
-let sdUrls = []
-let sdObjects = []
-const sdCount = 10
-const rbCount = 8
-const key = 'removed-speed-dials'
+import { openLink, render } from './helpers'
+import { SD } from './classes'
 
-fetchTopSites()
-fetchRecentBookmarks()
+let sdUrls = []
+let sdDomObjects = []
+const key = 'removed-speed-dials'
 
 /*
 Todo:
 */
-function fetchTopSites() {
+export function fetchTopSites(sdCount) {
     chrome.topSites.get((sites) => {
         chrome.storage.sync.get(key, function(removedItems) {
             console.log(removedItems)

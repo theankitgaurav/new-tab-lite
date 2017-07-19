@@ -1,8 +1,9 @@
+
 /* 
 This class creates the required DOM elements to be embedded in the 
 speed-dial-box
 */
-class SD {
+export class SD {
     constructor(SDObject) {
         this.url = SDObject.url || '#'
         this.title = SDObject.title || ''
@@ -24,7 +25,7 @@ class SD {
 This class creates the required DOM elements to be embedded in the 
 header section as recently bookmarked urls
 */
-class RB {
+export class RB {
     constructor(RBObject) {
         this.id = RBObject.id
         this.url = RBObject.url || '#'

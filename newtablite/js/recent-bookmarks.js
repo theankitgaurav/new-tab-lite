@@ -1,4 +1,7 @@
-function fetchRecentBookmarks() {
+import { openLink, render } from './helpers'
+import { RB } from './classes'
+
+export function fetchRecentBookmarks(rbCount) {
     let recentBookmarksArr = []
     chrome.bookmarks.getRecent(rbCount, (recents) => {
         recentBookmarksArr = recents.map((el) => {
@@ -15,10 +18,8 @@ function fetchRecentBookmarks() {
 // to add the event listeners required for recent-bookmarks section
 */
 function addListenerForRB() {
-    // Add event listener to open links in header
     for (let el of document.getElementsByClassName('recent-bookmarks')) {
         el.addEventListener("click", (event) => {
-            console.log(event)
             openLink(event.target.id)
         })
     }
