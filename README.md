@@ -2,7 +2,7 @@
 A minimalistic chrome extension to upgrade the new tab page in Google Chrome 
 
 # Screenshot
-![screenshot](https://github.com/ankitgaurav/new-tab-lite/raw/master/resources/snapshot1.jpg)
+![screenshot](https://github.com/ankitgaurav/new-tab-lite/raw/master/resources/snapshot1.png)
 
 # Installation 
 Install the extension from here https://goo.gl/Wkkigh
