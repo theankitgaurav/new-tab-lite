@@ -33,8 +33,25 @@ function addListenersForSD() {
         el.addEventListener("click", (event) => {
             openLink(event.target.dataset.id)
         })
+        // let t
+        // el.addEventListener('mouseover', (event) => {
+        //     let x = 0;
+        //     function moreVisible() {
+        //         if (x == 1) clearInterval(t);
+        //         x += 0.05;
+        //         let target = event.target.firstElementChild.firstElementChild
+        //         // console.log(target)
+        //         target.style.opacity = x;
+        //         target.style.filter = "alpha(opacity=" + (x * 100) + ")";
+        //     }
+        //     t = setInterval(moreVisible, 25);
+        // })
+        // el.addEventListener('mouseout', (event) => {
+        //     clearInterval(t);
+        // })
     }
 }
+
 
 function addListenersForRemoveButtons() {
     // Add event listener to remove particular items from speed dial box and storage 

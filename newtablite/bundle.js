@@ -100,12 +100,14 @@ function render(parentDivId, dataObjectsArr) {
     }
 }
 
+
 function get(key) {
-	return JSON.parse(localStorage.getItem(key))
+    return JSON.parse(localStorage.getItem(key))
 }
 
+
 function set(key, value) {
-	localStorage.setItem(key, JSON.stringify(value)) 
+    localStorage.setItem(key, JSON.stringify(value))
 }
 
 /***/ }),
@@ -164,18 +166,25 @@ ${this.url}"  id="${this.url}">
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(3);
+
+
+/***/ }),
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__recent_bookmarks__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__speed_dials__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__recent_bookmarks__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__speed_dials__ = __webpack_require__(5);
 
 
 
 
-// Disable the default context manus
+// Disable the default context menus
 document.addEventListener("contextmenu", (event) => {
     event.preventDefault()
 }, false)
@@ -187,11 +196,12 @@ for (let el of document.getElementsByClassName("launchButton")) {
     })
 }
 
+// chrome.browserAction.disable(1)
 Object(__WEBPACK_IMPORTED_MODULE_2__speed_dials__["a" /* fetchTopSites */])()
 Object(__WEBPACK_IMPORTED_MODULE_1__recent_bookmarks__["a" /* fetchRecentBookmarks */])()
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -227,7 +237,7 @@ function addListenerForRB() {
 }
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -269,8 +279,25 @@ function addListenersForSD() {
         el.addEventListener("click", (event) => {
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["b" /* openLink */])(event.target.dataset.id)
         })
+        // let t
+        // el.addEventListener('mouseover', (event) => {
+        //     let x = 0;
+        //     function moreVisible() {
+        //         if (x == 1) clearInterval(t);
+        //         x += 0.05;
+        //         let target = event.target.firstElementChild.firstElementChild
+        //         // console.log(target)
+        //         target.style.opacity = x;
+        //         target.style.filter = "alpha(opacity=" + (x * 100) + ")";
+        //     }
+        //     t = setInterval(moreVisible, 25);
+        // })
+        // el.addEventListener('mouseout', (event) => {
+        //     clearInterval(t);
+        // })
     }
 }
+
 
 function addListenersForRemoveButtons() {
     // Add event listener to remove particular items from speed dial box and storage 

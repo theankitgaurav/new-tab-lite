@@ -2,7 +2,7 @@ import { openLink } from './helpers'
 import { fetchRecentBookmarks } from './recent-bookmarks'
 import { fetchTopSites } from './speed-dials'
 
-// Disable the default context manus
+// Disable the default context menus
 document.addEventListener("contextmenu", (event) => {
     event.preventDefault()
 }, false)
@@ -14,5 +14,6 @@ for (let el of document.getElementsByClassName("launchButton")) {
     })
 }
 
+// chrome.browserAction.disable(1)
 fetchTopSites()
 fetchRecentBookmarks()

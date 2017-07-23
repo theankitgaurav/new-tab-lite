@@ -186,13 +186,14 @@ input:focus {
 .speed-dial .remove {
     margin: 0px;
     float: right;
-    visibility: hidden;
     text-align: center;
     padding: 5px;
     content: url("../icons/close.png");
+    opacity: 0;
 }
 
 .speed-dial:hover .remove {
-    visibility: visible;
     cursor: default;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
 }
