@@ -131,7 +131,7 @@ class SD {
         return `
         <div class="speed-dial">
             <div class="speed-dial-item" data-id="${this.url}">
-                <span class="remove">x</span>
+                <span class="remove" title="Remove">x</span>
                 <img data-id="${this.url}" class="speed-dial-favicon" src="${this.faviconUrl}" width=20px height=20px>
                 <div data-id="${this.url}" class="speed-dial-title" title="${this.title}">${this.title}</div>
             </div>
@@ -157,7 +157,7 @@ class RB {
         <div class="recent-bookmarks" title="${this.title}
 ${this.url}"  id="${this.url}">
         <img class="favicon" src="${this.favicon}">
-        ${this.shortTitle}
+        ${this.title}
         </div>`
     }
 }
@@ -184,21 +184,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-// Disable the default context menus
-document.addEventListener("contextmenu", (event) => {
-    event.preventDefault()
-}, false)
-
-// Add click event listeners to footer launchButtons
-for (let el of document.getElementsByClassName("launchButton")) {
-    el.addEventListener("click", (event) => {
-        Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["b" /* openLink */])(event.target.getAttribute("data-url"))
-    })
+if ( document.readyState === "complete" ||
+    (document.readyState !== "loading" && !document.documentElement.doScroll) ) {
+    initialize();
+} else {
+    document.addEventListener("DOMContentLoaded", initialize);
 }
 
-// chrome.browserAction.disable(1)
-Object(__WEBPACK_IMPORTED_MODULE_2__speed_dials__["a" /* fetchTopSites */])()
-Object(__WEBPACK_IMPORTED_MODULE_1__recent_bookmarks__["a" /* fetchRecentBookmarks */])()
+
+function initialize () {
+    // Disable the default context menus
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault()
+    }, false)
+
+    // Add click event listeners to footer launchButtons
+    for (let el of document.getElementsByClassName("launchButton")) {
+        el.addEventListener("click", (event) => {
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers__["b" /* openLink */])(event.target.getAttribute("data-url"))
+        })
+    }
+
+    // chrome.browserAction.disable(1)
+    Object(__WEBPACK_IMPORTED_MODULE_2__speed_dials__["a" /* fetchTopSites */])()
+    Object(__WEBPACK_IMPORTED_MODULE_1__recent_bookmarks__["a" /* fetchRecentBookmarks */])()
+}
+
 
 /***/ }),
 /* 4 */

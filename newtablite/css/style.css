@@ -16,7 +16,7 @@ body {
 }
 
 #recent-bookmarks-box {
-    display: inline-block;
+    display: inline;
     width: 90%;
 }
 
@@ -24,6 +24,10 @@ body {
     display: inline-block;
     padding: 10px 5px;
     cursor: pointer;
+    white-space: nowrap; 
+    max-width: 10em;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .recent-bookmarks:hover {
@@ -31,7 +35,6 @@ body {
 }
 
 .favicon {
-    margin-right: 5px;
     vertical-align: bottom;
 }
 
@@ -190,9 +193,11 @@ input:focus {
     padding: 5px;
     content: url("../icons/close.png");
     opacity: 0;
+    visibility: hidden;
 }
 
 .speed-dial:hover .remove {
+    visibility: visible;
     cursor: default;
     opacity: 1;
     transition: opacity 1s ease-in-out;
