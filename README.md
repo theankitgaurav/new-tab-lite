@@ -13,7 +13,14 @@
 # Installation 
 Install the extension from here https://goo.gl/Wkkigh
 
-Enjoy :wink:
+# TODO
+- [ ] Make header links count adjustabel according to screen width
+- [ ] Option to add custom urls to speed-dial
+
+# Contributions
+I you have any feedback regarding the extension, feel free to raise an issue. 
+
+Contributions are more than welcome. To contribute, fork the project, do your changes in a feature branch, the do a pull request.
 
 # Credits
 The New Tab Lite icon is cc-licesed icon new by Allen from the Noun Project
