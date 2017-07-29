@@ -14,7 +14,7 @@
 Install the extension from here https://goo.gl/Wkkigh
 
 # TODO
-- [ ] Make header links count adjustabel according to screen width
+- [ ] Make header links count adjustable according to screen width
 - [ ] Option to add custom urls to speed-dial
 
 # Contributions
@@ -23,7 +23,7 @@ I you have any feedback regarding the extension, feel free to raise an issue.
 Contributions are more than welcome. To contribute, fork the project, do your changes in a feature branch, the do a pull request.
 
 # Credits
-The New Tab Lite icon is cc-licesed icon new by Allen from the Noun Project
+The New Tab Lite icon is cc-licensed icon tab add by amy morgan from the Noun Project
 
 The launcher icons has been taken from Firefox browser with no intension of damaging any copyright.
 

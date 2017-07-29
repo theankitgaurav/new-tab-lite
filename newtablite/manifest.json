@@ -3,7 +3,7 @@
     "name": "New Tab Lite",
     "description": "The best of both the worlds and some more.",
     "homepage_url": "https://github.com/ankitgaurav/new-tab-lite",
-    "version": "0.2",
+    "version": "0.2.7",
     "chrome_url_overrides": {
         "newtab": "index.html"
     },

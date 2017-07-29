@@ -23,7 +23,6 @@ function initialize () {
         })
     }
 
-    // chrome.browserAction.disable(1)
     fetchTopSites()
     fetchRecentBookmarks()
 }

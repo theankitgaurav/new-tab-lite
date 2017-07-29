@@ -129,11 +129,12 @@ class SD {
     }
     toString() {
         return `
-        <div class="speed-dial">
+        <div class="speed-dial" title="${this.title}
+${this.url}">
             <div class="speed-dial-item" data-id="${this.url}">
                 <span class="remove" title="Remove">x</span>
                 <img data-id="${this.url}" class="speed-dial-favicon" src="${this.faviconUrl}" width=20px height=20px>
-                <div data-id="${this.url}" class="speed-dial-title" title="${this.title}">${this.title}</div>
+                <div data-id="${this.url}" class="speed-dial-title">${this.title}</div>
             </div>
         </div>`
     }
