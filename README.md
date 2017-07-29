@@ -11,8 +11,7 @@
 ![screenshot](https://github.com/ankitgaurav/new-tab-lite/raw/master/resources/screenshot1.png)
 
 # Installation 
-Install the extension from here https://goo.gl/Wkkigh
-
+Install the extension from [here](https://goo.gl/S4kjyW) 
 # TODO
 - [ ] Make header links count adjustable according to screen width
 - [ ] Option to add custom urls to speed-dial
